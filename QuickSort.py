@@ -12,7 +12,7 @@ def partition(array, start, end):
 def quick_sort(array, start=0, end=-1):
     if end == -1:
         end = len(array) - 1
-    if start == end:
+    if start >= end:
         return
     pivot = partition(array, start, end)
     quick_sort(array, start, pivot - 1)
@@ -20,4 +20,4 @@ def quick_sort(array, start=0, end=-1):
     return array
 
 
-print(quick_sort([3, 4, 5, 1, 2], 0, 4))
+print(quick_sort([3, 4, 5, 1, 2, 13, 214, 5241, 153, 635, 23]))
