@@ -1,16 +1,23 @@
 def partition(array, start, end):
-    pivotval = array[end - 1]
-    leftBound = start - 1
-    for i in range(start, end-1):
-        if array[i] < pivotval:
-            leftBound += 1
-            (array[i], array[leftBound]) = (array[leftBound], array[i])
-    (array[end-1], array[leftBound+1]) = (array[leftBound+1], array[end-1])
+    pivot_value = array[end]
+    left_bound = start - 1
+    for i in range(start, end):
+        if array[i] < pivot_value:
+            left_bound += 1
+            (array[i], array[left_bound]) = (array[left_bound], array[i])
+    (array[end], array[left_bound + 1]) = (array[left_bound + 1], array[end])
+    return left_bound + 1
+
+
+def quick_sort(array, start=0, end=-1):
+    if end == -1:
+        end = len(array) - 1
+    if start == end:
+        return
+    pivot = partition(array, start, end)
+    quick_sort(array, start, pivot - 1)
+    quick_sort(array, pivot + 1, end)
     return array
 
 
-def quicksort(array, start, end):
-    return array
-
-
-print(partition([2, 8, 7, 1, 3, 5, 6, 4], 0, 8))
+print(quick_sort([3, 4, 5, 1, 2], 0, 4))
